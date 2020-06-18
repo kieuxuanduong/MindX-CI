@@ -1,0 +1,23 @@
+h1 {
+  color: red;
+}
+
+.class {
+  color: blue;
+}
+
+input[type="text"] {
+  color: red;
+}
+
+/* ul li {
+    color: aqua;
+} */
+
+.parent>div{
+    color:green;
+}
+
+ul:hover{
+    color: blue;
+}

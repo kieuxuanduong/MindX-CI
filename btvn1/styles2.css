@@ -1,0 +1,38 @@
+.container, html,body{
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+}
+
+.item {
+    flex: 1;
+    height: auto;
+    padding: 5px;
+}
+
+#p1{
+    padding-top: 30px;
+    background: #DAE8FC;
+    border: 1px solid #6C8FBF;
+    border-right: 0px;
+}
+
+#p2{
+    background: #D5E8D4;
+    border: 1px solid #82B366;
+    border-right: 0px;
+}
+
+#p3{
+    background: #FAE6CC;
+    border: 1px solid #D79B01;
+    border-right: 0px;
+}
+
+#p4{
+    background: #F7CECC;
+    border: 1px solid #B85450;
+}

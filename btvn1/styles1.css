@@ -1,0 +1,15 @@
+body{
+    margin:auto
+}
+
+.container {
+    display: flex;
+}
+
+.item {
+    flex: 1;
+    background: #B3B3B3;
+    height: fit-content;
+    border: 1px solid #C6C6C6;
+    padding: 10px;
+}

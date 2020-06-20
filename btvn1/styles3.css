@@ -1,0 +1,30 @@
+body{
+    margin: auto;
+}
+.container {
+    display: flex;
+}
+
+.item{
+    padding: 5px;
+}
+
+#right{
+    height: 700px;
+    width: 200px;
+    background-color: #DAE8FC;
+}
+
+#left{
+    height: 800px;
+    width: 200px;
+    background-color: #D5E8D4;
+}
+
+#content1{
+    background-color: #B3B3B3;
+}
+
+#content2{
+    background-color: #77FFFF;
+}

@@ -18,6 +18,29 @@ view.setActiveScreen = (screenName) => {
                 }
                 controller.register(registerInfo)
             })
+
+            const loginSpan = document.getElementById('redirect-to-login')
+            loginSpan.addEventListener('click',(e)=>{
+                view.setActiveScreen('loginScreen')
+            })
+
+            
+            break
+        case 'loginScreen':
+            document.getElementById('app').innerHTML = components.loginScreen
+            const loginForm = document.getElementById('form-login')
+            loginForm.addEventListener('submit',(e)=>{
+                e.preventDefault()
+                const loginInfo = {
+                    email: loginForm.email.value,
+                    password: loginForm.password.value,
+                }
+                controller.login(loginInfo)
+            })
+            const registerSpan = document.getElementById('redirect-to-register')
+            registerSpan.addEventListener('click',(e)=>{
+                view.setActiveScreen('registerScreen')
+            })
             break
     }
 }

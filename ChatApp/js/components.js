@@ -19,7 +19,7 @@ components.registerScreen = `
                         </div>
                     </div>
                     <div class="input-wrapper">
-                        <input type="email" name="email" placeholder="mail@example.com" id="">
+                        <input type="email" name="email" placeholder="Email..." id="">
                         <div class="error" id="error-email"></div>
                     </div>
                     <div class="input-wrapper">
@@ -33,6 +33,29 @@ components.registerScreen = `
                     <div class="submit-wrapper">
                         <div>Already have an account? <span class="cursor-pointer" id="redirect-to-login">Login</span></div>
                         <button class="btn" type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+`
+components.loginScreen = `
+<div class="login-container">
+            <div class="login-form">
+                <div class="title">Mindx Chat</div>
+                <form id="form-login">
+                    
+                    <div class="input-wrapper">
+                        <input type="email" name="email" placeholder="Email..." id="">
+                        <div class="error" id="error-email"></div>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="password" name="password" placeholder="Password...">
+                        <div class="error" id="error-password"></div>
+                    </div>
+                    
+                    <div class="submit-wrapper">
+                        <div>Don't have an account? <span class="cursor-pointer" id="redirect-to-register">Register</span></div>
+                        <button class="btn" type="submit">Login</button>
                     </div>
                 </form>
             </div>

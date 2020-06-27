@@ -2,46 +2,54 @@ const controller = {}
 
 controller.register = (registerInfo) => {
     if (registerInfo.firstName === '') {
-        document.getElementById('error-first-name').innerText = 'Please input first name'
-    } else {
-        document.getElementById('error-first-name').innerText = ''
-    }
+        view.setErrorMessage('error-first-name', 'Please input first name')
 
-    if (registerInfo.lastName === '') {
-        document.getElementById('error-last-name').innerText = 'Please input last name'
     } else {
-        document.getElementById('error-last-name').innerText = ''
+        view.setErrorMessage('error-first-name', '')
+    }
+    if (registerInfo.lastName === '') {
+        view.setErrorMessage('error-last-name', 'Please input last name')
+    } else {
+        view.setErrorMessage('error-last-name', '')
     }
     if (registerInfo.email === '') {
-        document.getElementById('error-email').innerText = 'Please input email'
+        view.setErrorMessage('error-email', 'Please input email')
     } else {
-        document.getElementById('error-email').innerText = ''
+        view.setErrorMessage('error-email', '')
     }
     if (registerInfo.password === '') {
-        document.getElementById('error-password').innerText = 'Please input password'
+        view.setErrorMessage('error-password', 'Please input password')
     } else {
-        document.getElementById('error-password').innerText = ''
+        view.setErrorMessage('error-password', '')
     }
     if (registerInfo.confirmPassword === '') {
-        document.getElementById('error-confirm-password').innerText = 'Please input confirm password'
+        view.setErrorMessage('error-confirm-password', 'Please input confirm password')
+        return
+    } else if (registerInfo.confirmPassword !== registerInfo.password) {
+        view.setErrorMessage('error-confirm-password', "Your password didn't match")
+        return
     } else {
-        if (registerInfo.confirmPassword !== registerInfo.password) {
-            document.getElementById('error-confirm-password').innerText = "Your password didn't match"
-        } else {
-            document.getElementById('error-confirm-password').innerText = ''
-        }
+        view.setErrorMessage('error-confirm-password', '')
+    }
+
+    if(registerInfo.firstName && registerInfo.lastName && registerInfo.email && registerInfo.password){
+        model.register(registerInfo.firstName, registerInfo.lastName, registerInfo.email, registerInfo.password)
     }
 }
 
 controller.login = (loginInfo) => {
     if (loginInfo.email === '') {
-        document.getElementById('error-email').innerText = 'Please input email'
+        view.setErrorMessage('error-email', 'Please input email')
     } else {
-        document.getElementById('error-email').innerText = ''
+        view.setErrorMessage('error-email', '')
     }
     if (loginInfo.password === '') {
-        document.getElementById('error-password').innerText = 'Please input password'
+        view.setErrorMessage('error-password', 'Please input password')
     } else {
-        document.getElementById('error-password').innerText = ''
+        view.setErrorMessage('error-password', '')
+    }
+
+    if(loginInfo.email && loginInfo.password){
+        model.login(loginInfo.email, loginInfo.password)
     }
 }

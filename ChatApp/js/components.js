@@ -10,16 +10,16 @@ components.registerScreen = `
                 <form id="form-register">
                     <div class="name-wrapper">
                         <div class="input-wrapper">
-                            <input type="text" name="firstName" placeholder="First Name..." id="">
+                            <input type="text" name="firstName" placeholder="First Name...">
                             <div class="error" id="error-first-name"></div>
                         </div>
                         <div class="input-wrapper">
-                            <input type="text" name="lastName" placeholder="Last Name..." id="">
+                            <input type="text" name="lastName" placeholder="Last Name...">
                             <div class="error" id="error-last-name"></div>
                         </div>
                     </div>
                     <div class="input-wrapper">
-                        <input type="email" name="email" placeholder="Email..." id="">
+                        <input type="email" name="email" placeholder="Email...">
                         <div class="error" id="error-email"></div>
                     </div>
                     <div class="input-wrapper">
@@ -45,7 +45,7 @@ components.loginScreen = `
                 <form id="form-login">
                     
                     <div class="input-wrapper">
-                        <input type="email" name="email" placeholder="Email..." id="">
+                        <input type="email" name="email" placeholder="Email...">
                         <div class="error" id="error-email"></div>
                     </div>
                     <div class="input-wrapper">
@@ -60,4 +60,8 @@ components.loginScreen = `
                 </form>
             </div>
         </div>
+`
+
+components.chatScreen = `
+    <div> Welcome to chat app, <span id="display-name"></span></div>
 `

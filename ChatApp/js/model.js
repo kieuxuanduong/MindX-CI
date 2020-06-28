@@ -20,6 +20,7 @@ model.login = (email, password) => {
     firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
         console.log(user)
         if (user.user.emailVerified) {
+            // model.currentUser = user.user
             model.currentUser = {
                 displayName: user.user.displayName,
                 email: user.user.email

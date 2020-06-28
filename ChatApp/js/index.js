@@ -11,6 +11,7 @@ window.onload = () => {
     firebase.initializeApp(firebaseConfig);
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
+          // model.currentUser = user
           model.currentUser = {
                 displayName: user.displayName,
                 email: user.email

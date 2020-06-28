@@ -42,7 +42,7 @@ view.setActiveScreen = (screenName) => {
         case 'chatScreen':
             document.getElementById('app').innerHTML = components.chatScreen
             document.getElementById('display-name').innerHTML = model.currentUser.displayName
-            console.log(model.currentUser)
+            // console.log(model.currentUser)
             break
     }
 }

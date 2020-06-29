@@ -41,12 +41,54 @@ view.setActiveScreen = (screenName) => {
             break
         case 'chatScreen':
             document.getElementById('app').innerHTML = components.chatScreen
-            document.getElementById('display-name').innerHTML = model.currentUser.displayName
-            // console.log(model.currentUser)
+            const sendMessageForm = document.querySelector('#sendMessageForm')
+            sendMessageForm.message.focus()
+            sendMessageForm.addEventListener('submit', (e) => {
+                e.preventDefault()
+                if (sendMessageForm.message.value.trim()) {
+                    const message = {
+                        owner: model.currentUser.email,
+                        content: sendMessageForm.message.value
+                    }
+
+                    const messageFromBot = {
+                        owner: 'Bot',
+                        content: sendMessageForm.message.value
+                    }
+                    view.addMessage(message)
+                    view.addMessage(messageFromBot)
+                    sendMessageForm.message.value = ''
+                    const listMessage = document.querySelector('.list-message')
+                    listMessage.scrollTop = listMessage.scrollHeight;
+            
+                } else {
+                    // alert('blank message?')
+                }
+            })
             break
     }
 }
 
 view.setErrorMessage = (id, message) => {
     document.getElementById(id).innerText = message
+}
+
+view.addMessage = (message) => {
+    const messageWrapper = document.createElement('div')
+    messageWrapper.classList.add('message')
+    if (message.owner === model.currentUser.email) {
+        messageWrapper.classList.add('mine')
+        messageWrapper.innerHTML = `
+        <div class="content">${message.content}</div>
+        `
+    } else {
+        messageWrapper.classList.add('their')
+        messageWrapper.innerHTML = `
+        <div class="owner">${message.owner}</div>
+        <div class="content">${message.content}</div>
+        `
+    }
+
+    document.querySelector(".list-message").appendChild(messageWrapper);
+
 }

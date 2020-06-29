@@ -2,8 +2,6 @@ const model = {}
 model.currentUser = undefined
 model.register = (firstName, lastname, email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password).then((user) => {
-        console.log(user)
-        alert('register success')
         firebase.auth().currentUser.sendEmailVerification()
         firebase.auth().currentUser.updateProfile({
             displayName: firstName + ' ' + lastname

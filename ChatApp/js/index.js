@@ -68,7 +68,7 @@ templateQueryDatabase = () => {
   }
 
   firebase.firestore().collection('users').doc(docIdUpdate).update(dataToUpdate).then(res => {
-    alert('updated!')
+    // alert('updated!')
   })
   // delete
   const docIdDelete = 'DzvsrYM8CJQvuOgtY4El'

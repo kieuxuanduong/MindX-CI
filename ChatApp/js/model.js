@@ -47,7 +47,7 @@ model.loadConversations = () => {
     })
 }
 
-model.saveMessage = (message) => {
+model.addMessage = (message) => {
     firebase.firestore().collection('conversations').doc(model.currentConversation.id).update(message).then(res => {
         alert('updated!')
       })

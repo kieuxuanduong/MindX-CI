@@ -48,17 +48,14 @@ view.setActiveScreen = (screenName) => {
                 if (sendMessageForm.message.value.trim()) {
                     const message = {
                         owner: model.currentUser.email,
-                        content: sendMessageForm.message.value
-                    }
-
-                    const messageFromBot = {
-                        owner: 'Bot',
-                        content: sendMessageForm.message.value
+                        content: sendMessageForm.message.value,
+                        createdAt: new Date().toISOString()
                     }
                     view.addMessage(message)
-                    view.addMessage(messageFromBot)
-                    model.saveMessage(message)
-
+                    data = {
+                        messages: firebase.firestore.FieldValue.arrayUnion(message),
+                    }
+                    model.addMessage(data)
                 } else {
                     // alert('blank message?')
                 }

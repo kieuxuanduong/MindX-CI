@@ -1,5 +1,7 @@
 const model = {}
 model.currentUser = undefined
+model.collectionName = 'conversations'
+model.currentConversation = undefined
 model.register = (firstName, lastname, email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password).then((user) => {
         firebase.auth().currentUser.sendEmailVerification()
@@ -31,4 +33,22 @@ model.login = (email, password) => {
     }).catch((e) => {
         alert(e.message)
     })
+}
+
+model.loadConversations = () => {
+    firebase.firestore().collection(model.collectionName).get().then(res => {
+        const data = utils.getDataFromDocs(res.docs)
+        if (data.length > 0) {
+            model.currentConversation = data[0]
+            view.showCurrentConversation()
+        }
+        console.log(data);
+
+    })
+}
+
+model.saveMessage = (message) => {
+    firebase.firestore().collection('conversations').doc(model.currentConversation.id).update(message).then(res => {
+        alert('updated!')
+      })
 }

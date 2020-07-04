@@ -29,4 +29,51 @@ window.onload = () => {
   console.log('loaded!')
   // view.setActiveScreen('registerScreen')
   // view.setActiveScreen('loginScreen')
+
+  // templateQueryDatabase()
 }
+
+templateQueryDatabase = () => {
+  const docId = 'oTVtYS2O9Ixhj5rVUHna'
+  // get one
+  firebase.firestore().collection('users').doc(docId).get().then(res => {
+    console.log(getDataFromDoc(res))
+  }).catch(err => {
+    console.log(err)
+  })
+  // get many
+  firebase.firestore().collection('users').where('age', '==', 20).get().then(res => {
+    console.log(res)
+    // console.log(getDataFromDoc(res.docs[0]))
+    console.log(getDataFromDocs(res.docs));
+    
+  })
+  // create
+  const dataToCreate = {
+    name: 'Create',
+    age: 18,
+    email: 'duongkx@gmail.com',
+    phoneNumber: ['01233434343']
+  }
+
+  // firebase.firestore().collection('users').add(dataToCreate).then(res => {
+  //   alert('added!')
+  // })
+  // update
+  const docIdUpdate = 'B56BnDlsvdMoQvq5Z71I'
+  const dataToUpdate = {
+    age: 21,
+    address: 'HN',
+    phone: firebase.firestore.FieldValue.arrayUnion('090909094')
+  }
+
+  firebase.firestore().collection('users').doc(docIdUpdate).update(dataToUpdate).then(res => {
+    alert('updated!')
+  })
+  // delete
+  const docIdDelete = 'DzvsrYM8CJQvuOgtY4El'
+  firebase.firestore().collection('users').doc(docIdDelete).delete().then(res => {
+    alert('deleted!')
+  })
+}
+

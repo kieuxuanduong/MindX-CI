@@ -63,6 +63,7 @@
     color: #333;
     word-break: break-word;
     width: max-content;
+    margin-bottom: 1px;
 }
 
 .chat-container .list-message .message.their .owner{

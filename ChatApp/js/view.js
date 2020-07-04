@@ -57,14 +57,13 @@ view.setActiveScreen = (screenName) => {
                     }
                     view.addMessage(message)
                     view.addMessage(messageFromBot)
-                    sendMessageForm.message.value = ''
-                    const listMessage = document.querySelector('.list-message')
-                    listMessage.scrollTop = listMessage.scrollHeight;
-            
+                    model.saveMessage(message)
+
                 } else {
                     // alert('blank message?')
                 }
             })
+            model.loadConversations()
             break
     }
 }
@@ -88,7 +87,16 @@ view.addMessage = (message) => {
         <div class="content">${message.content}</div>
         `
     }
+    sendMessageForm.message.value = ''
+    const listMessage = document.querySelector('.list-message')
+    listMessage.scrollTop = listMessage.scrollHeight;
 
     document.querySelector(".list-message").appendChild(messageWrapper);
 
+}
+
+view.showCurrentConversation = () => {
+    for (let oneMessage of model.currentConversation.messages) {
+        view.addMessage(oneMessage)
+    }
 }

@@ -62,10 +62,16 @@ components.loginScreen = `
         </div>
 `
 
-components.chatScreen =`
-    <div class="chat-container">
-            <div class="chat-header">
+components.chatScreen = `
+        <div class="chat-header">
                 MindX chat
+        </div>    
+        <div class="chat-container">
+            <div class="aside-right">
+                <div class="list-conversations">
+                    
+                    
+                </div>
             </div>
             <div class="main">
                 <div class="conversation-detail">

@@ -51,16 +51,14 @@ view.setActiveScreen = (screenName) => {
                         content: sendMessageForm.message.value,
                         createdAt: new Date().toISOString()
                     }
-                    view.addMessage(message)
-                    data = {
-                        messages: firebase.firestore.FieldValue.arrayUnion(message),
-                    }
-                    model.addMessage(data)
+                    // view.addMessage(message)
+                    model.addMessage(message)
                 } else {
                     // alert('blank message?')
                 }
             })
             model.loadConversations()
+            model.listenConversationChange()
             break
     }
 }
@@ -86,10 +84,10 @@ view.addMessage = (message) => {
     }
     sendMessageForm.message.value = ''
     const listMessage = document.querySelector('.list-message')
-    listMessage.scrollTop = listMessage.scrollHeight;
+    
 
     document.querySelector(".list-message").appendChild(messageWrapper);
-
+    listMessage.scrollTop = listMessage.scrollHeight;
 }
 
 view.showCurrentConversation = () => {

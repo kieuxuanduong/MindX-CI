@@ -88,11 +88,7 @@ components.chatScreen = `
             </div>
             <div class="aside-right">
                 <div class="list-users">
-                    <p class="email">khiemnb@gmail.com</p>
-                    <p class="email">khiemnb@gmail.com</p>
-                    <p class="email">khiemnb@gmail.com</p>
-                    <p class="email">khiemnb@gmail.com</p>
-     
+
                 </div>
                 <form id="addEmailForm">
                     

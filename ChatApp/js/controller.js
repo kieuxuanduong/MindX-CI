@@ -32,7 +32,7 @@ controller.register = (registerInfo) => {
         view.setErrorMessage('error-confirm-password', '')
     }
 
-    if(registerInfo.firstName && registerInfo.lastName && registerInfo.email && registerInfo.password){
+    if (registerInfo.firstName && registerInfo.lastName && registerInfo.email && registerInfo.password) {
         model.register(registerInfo.firstName, registerInfo.lastName, registerInfo.email, registerInfo.password)
     }
 }
@@ -49,7 +49,22 @@ controller.login = (loginInfo) => {
         view.setErrorMessage('error-password', '')
     }
 
-    if(loginInfo.email && loginInfo.password){
+    if (loginInfo.email && loginInfo.password) {
         model.login(loginInfo.email, loginInfo.password)
     }
 }
+
+controller.createConversation = ({ title, friendEmail }) => {
+    view.setErrorMessage('conversation-name-error', !title?'Please input title':'')
+    view.setErrorMessage('conversation-email-error', !friendEmail?'Please input friend email':'')
+
+    if(title && friendEmail){
+        model.createConversation({
+            title,
+            users: [friendEmail, model.currentUser.email],
+            createdAt: new Date().toISOString(),
+            messages: []
+        })
+    }
+}
+

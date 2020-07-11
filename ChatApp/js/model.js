@@ -45,7 +45,7 @@ model.loadConversations = () => {
         .then(res => {
             const data = utils.getDataFromDocs(res.docs)
             model.conversations = data
-            
+
             if (data.length > 0) {
                 model.currentConversation = data[0]
                 view.showCurrentConversation()
@@ -77,13 +77,13 @@ model.listenConversationChange = () => {
                 isFirstRun = true
                 return
             }
-            console.log(res)
+            // console.log(res)
             const docChanges = res.docChanges()
-            console.log(docChanges)
+            // console.log(docChanges)
 
             for (oneChange of docChanges) {
                 const type = oneChange.type
-
+                console.log(type)
                 const oneChangeData = utils.getDataFromDoc(oneChange.doc)
                 console.log(oneChangeData);
                 if (type === 'modified') {
@@ -91,16 +91,47 @@ model.listenConversationChange = () => {
                         model.currentConversation = oneChangeData
                         view.addMessage(oneChangeData.messages[oneChangeData.messages.length - 1])
                     }
-                 
+
                     for (let i = 0; i < model.conversations.length; i++) {
                         const element = model.conversations[i]
                         if (element.id === oneChangeData.id) {
                             model.conversations[i] = oneChangeData
                         }
                     }
-                    console.log(model.conversations)
+                    // console.log(model.conversations)
                 }
 
+                if (type === 'added') {
+                    model.conversations.push(oneChangeData)
+
+                    view.addConversation(oneChangeData)
+
+
+                }
             }
         })
 }
+
+
+model.changeCurrentConversation = (conversationId) => {
+    // for (conversation of model.conversations) {
+    //     if (conversation.id === conversationId) {
+    //         model.currentConversation = conversation
+    //     }
+    // }
+
+    model.currentConversation = model.conversations
+        .filter(item => item.id === conversationId)[0]
+    console.log(model.currentConversation)
+    view.showCurrentConversation()
+}
+
+model.createConversation = (conversation) => {
+
+    firebase.firestore().collection(model.collectionName).add(conversation)
+    view.backToChatScreen()
+    
+}
+
+
+

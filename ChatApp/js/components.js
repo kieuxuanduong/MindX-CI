@@ -63,11 +63,14 @@ components.loginScreen = `
 `
 
 components.chatScreen = `
-        <div class="chat-header">
+        <div class="header">
                 MindX chat
         </div>    
         <div class="chat-container">
-            <div class="aside-right">
+            <div class="aside-left">
+                <div class = "new-conversation">
+                  <button class="btn" id = "new-conversation">+ New conversation</button>
+                </div>
                 <div class="list-conversations">
                     
                     
@@ -86,4 +89,32 @@ components.chatScreen = `
                 </div>
             </div>
         </div>
+`
+
+
+components.createConversationScreen = `
+<div class = "create-conversation-wrapper">
+    <div class="header">
+            MindX chat
+    </div>    
+    <div class="main">
+        <h3 class="mb-1rem">Create a new conversation</h3>
+        <form id="create-conversation-form">
+            
+            <div class="input-wrapper mb-1rem">
+                <input type="text" name="title" placeholder="Conversation name">
+                <div class="error" id="conversation-name-error"></div>
+            </div>
+            <div class="input-wrapper mb-1rem">
+                <input type="text" name="email" placeholder="Friend email">
+                <div class="error" id="conversation-email-error"></div>
+            </div>
+            
+            <div class="button-wrapper">
+                <button class = "btn" type="submit">Create</button>
+                <button type="button" id='back-to-chat'>Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
 `

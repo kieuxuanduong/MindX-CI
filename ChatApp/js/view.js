@@ -57,8 +57,28 @@ view.setActiveScreen = (screenName) => {
                     // alert('blank message?')
                 }
             })
+
+            document.getElementById('new-conversation')
+                .addEventListener('click', () => {
+                    view.setActiveScreen('createConversationScreen')
+                })
             model.loadConversations()
             model.listenConversationChange()
+            break
+        case 'createConversationScreen':
+            document.getElementById('app').innerHTML = components.createConversationScreen
+            document.getElementById('back-to-chat').addEventListener('click', () => {
+                view.backToChatScreen()
+            })
+            const createConversationForm = document.getElementById('create-conversation-form')
+            createConversationForm.addEventListener('submit', (e) => {
+                e.preventDefault()
+                const data = {
+                    title: createConversationForm.title.value,
+                    friendEmail: createConversationForm.email.value
+                }
+                controller.createConversation(data)
+            })
             break
     }
 }
@@ -91,12 +111,14 @@ view.addMessage = (message) => {
 }
 
 view.showCurrentConversation = () => {
+    document.querySelector('.list-message').innerHTML = ''
     for (let oneMessage of model.currentConversation.messages) {
         view.addMessage(oneMessage)
     }
 }
 
 view.showConversation = () => {
+
     for (oneConversation of model.conversations) {
         view.addConversation(oneConversation)
     }
@@ -112,5 +134,38 @@ view.addConversation = (conversation) => {
         <div class ="conversation-title">${conversation.title}</div>
         <div class ="conversation-num-users">${conversation.users.length} users</div>
     `
+    conversationWrapper.addEventListener('click', () => {
+        document.querySelector('.current').classList.remove('current')
+        conversationWrapper.classList.add('current')
+        model.changeCurrentConversation(conversation.id)
+    })
+
     document.querySelector('.list-conversations').appendChild(conversationWrapper)
+}
+
+view.backToChatScreen = () => {
+    document.getElementById('app').innerHTML = components.chatScreen
+    const sendMessageForm = document.querySelector('#sendMessageForm')
+    sendMessageForm.message.focus()
+    sendMessageForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if (sendMessageForm.message.value.trim()) {
+            const message = {
+                owner: model.currentUser.email,
+                content: sendMessageForm.message.value,
+                createdAt: new Date().toISOString()
+            }
+            // view.addMessage(message)
+            model.addMessage(message)
+        } else {
+            // alert('blank message?')
+        }
+    })
+
+    document.getElementById('new-conversation')
+        .addEventListener('click', () => {
+            view.setActiveScreen('createConversationScreen')
+        })
+        view.showConversation()
+        view.showCurrentConversation()
 }

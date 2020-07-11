@@ -101,3 +101,19 @@
   line-height: 64px;
   text-align: center;
 }
+
+
+.chat-container .aside-right {
+  border-left: 1px solid #dbdbdb;
+  font-size: 14px;
+  width: 15%;
+}
+
+.chat-container .email {
+  padding: 5px 10px;
+  padding-bottom: 0;
+}
+
+#addEmailForm {
+  padding: 10px;
+}

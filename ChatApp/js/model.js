@@ -101,12 +101,9 @@ model.listenConversationChange = () => {
                     // console.log(model.conversations)
                 }
 
-                if (type === 'added') {
+                else if (type === 'added') {
                     model.conversations.push(oneChangeData)
-
                     view.addConversation(oneChangeData)
-
-
                 }
             }
         })
@@ -130,7 +127,7 @@ model.createConversation = (conversation) => {
 
     firebase.firestore().collection(model.collectionName).add(conversation)
     view.backToChatScreen()
-    
+
 }
 
 

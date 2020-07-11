@@ -71,9 +71,7 @@ components.chatScreen = `
                 <div class = "new-conversation">
                   <button class="btn" id = "new-conversation">+ New conversation</button>
                 </div>
-                <div class="list-conversations">
-                    
-                    
+                <div class="list-conversations">                                     
                 </div>
             </div>
             <div class="main">
@@ -87,6 +85,28 @@ components.chatScreen = `
                         <button class="btn"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                     </form>
                 </div>
+            </div>
+            <div class="aside-right">
+                <div class="list-users">
+                    <p class="email">khiemnb@gmail.com</p>
+                    <p class="email">khiemnb@gmail.com</p>
+                    <p class="email">khiemnb@gmail.com</p>
+                    <p class="email">khiemnb@gmail.com</p>
+     
+                </div>
+                <form id="addEmailForm">
+                    
+                    <div class="input-wrapper mb-1rem">
+                        <input type="text" name="email" placeholder="Email">
+                        <div class="error" id="conversation-email-error"></div>
+                    </div>
+                    <div class="button-wrapper">
+                        <button class = "btn" type="submit">Thêm</button>
+                    </div>
+                </form>
+                
+            </div>    
+                
             </div>
         </div>
 `

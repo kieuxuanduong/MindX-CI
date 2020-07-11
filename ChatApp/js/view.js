@@ -110,18 +110,28 @@ view.addMessage = (message) => {
     listMessage.scrollTop = listMessage.scrollHeight;
 }
 
+
+
+
 view.showCurrentConversation = () => {
     document.querySelector('.list-message').innerHTML = ''
     for (let oneMessage of model.currentConversation.messages) {
         view.addMessage(oneMessage)
     }
+    // console.log('duong')
+    // console.log(model.currentConversation)
+    document.querySelector('.main .conversation-title').innerHTML = model.currentConversation.title
+
+    view.showCurrentConversationUsers(model.currentConversation)
 }
 
 view.showConversation = () => {
-
+    document.querySelector('.list-conversations').innerHTML = '' //20200711 - Duong - refresh list after sign out and sign back in
     for (oneConversation of model.conversations) {
         view.addConversation(oneConversation)
     }
+
+
 }
 
 view.addConversation = (conversation) => {
@@ -166,6 +176,24 @@ view.backToChatScreen = () => {
         .addEventListener('click', () => {
             view.setActiveScreen('createConversationScreen')
         })
-        view.showConversation()
-        view.showCurrentConversation()
+    view.showConversation()
+    view.showCurrentConversation()
+}
+
+
+view.showCurrentConversationUsers = (users) => {
+    document.querySelector('.list-users').innerHTML = ''
+    for (oneUser of model.currentConversation.users) {
+        view.showUser(oneUser)
+    }
+}
+
+view.showUser = (user) => {
+    const userWrapper = document.createElement('div')
+
+    userWrapper.innerHTML = `
+        <p class ="email">${user}</p>
+        
+    `
+    document.querySelector('.list-users').appendChild(userWrapper)
 }

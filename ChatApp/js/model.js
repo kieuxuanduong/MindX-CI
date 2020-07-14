@@ -87,23 +87,38 @@ model.listenConversationChange = () => {
                 const oneChangeData = utils.getDataFromDoc(oneChange.doc)
                 console.log(oneChangeData);
                 if (type === 'modified') {
+                    console.log(oneChangeData)
+
                     if (oneChangeData.id === model.currentConversation.id) {
+                        
+                        if (model.currentConversation.users.length === oneChangeData.users.length) {
+                            view.addMessage(oneChangeData.messages[oneChangeData.messages.length - 1])
+                        } else {
+                            view.addUser(oneChangeData.users[oneChangeData.users.length - 1])
+                        }
                         model.currentConversation = oneChangeData
-                        view.addMessage(oneChangeData.messages[oneChangeData.messages.length - 1])
+
+
                     }
 
                     for (let i = 0; i < model.conversations.length; i++) {
                         const element = model.conversations[i]
                         if (element.id === oneChangeData.id) {
                             model.conversations[i] = oneChangeData
+                            if (oneChangeData.messages[oneChangeData.messages.length-1].owner !== model.currentUser.email){
+                                view.showNotify(oneChangeData.id)
+                            }
+
                         }
                     }
                     // console.log(model.conversations)
+
                 }
 
                 else if (type === 'added') {
                     model.conversations.push(oneChangeData)
                     view.addConversation(oneChangeData)
+                    view.showNotify(oneChangeData.id)
                 }
             }
         })
@@ -132,3 +147,10 @@ model.createConversation = (conversation) => {
 
 
 
+model.addUser = (email) => {
+    const dataToUpdate = {
+        users: firebase.firestore.FieldValue.arrayUnion(email)
+    }
+    firebase.firestore().collection(model.collectionName)
+        .doc(model.currentConversation.id).update(dataToUpdate)
+}

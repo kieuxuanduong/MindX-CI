@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.16.0/firebase-storage.js"></script>
+  </head>
+  <body>
+    <form id="upload-file">
+      <input type="file" name="file" accept="image/*"/>
+      <button type="submit">Upload File</button>
+    </form>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyA0d4x8L9I3moBCGXiBaqcEI5MQrDV2ltQ",
+        authDomain: "chatapp-dd.firebaseapp.com",
+        databaseURL: "https://chatapp-dd.firebaseio.com",
+        projectId: "chatapp-dd",
+        storageBucket: "chatapp-dd.appspot.com",
+        messagingSenderId: "389335102992",
+        appId: "1:389335102992:web:46a8c7e798ad604e877c95",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -165,6 +165,25 @@ view.addConversation = (conversation) => {
         <div class ="conversation-num-users">${conversation.users.length} users</div>
         <div class ="conversation-notify"></div>
         `
+    
+    const mediaQuery = window.matchMedia('screen and (max-width: 768px')
+    if (mediaQuery.matches) {
+        conversationWrapper.firstElementChild
+        .innerHTML = conversation.title.charAt(0)
+        document.getElementById('new-conversation').innerText = '+'
+    }
+
+    mediaQuery.addListener((mediaMatch) => {
+        if(mediaMatch.matches){
+            conversationWrapper.firstElementChild
+            .innerHTML = conversation.title.charAt(0)
+            document.getElementById('new-conversation').innerText = '+'
+        } else{
+            conversationWrapper.firstElementChild.innerHTML = conversation.title
+            document.getElementById('new-conversation').innerText = '+ New conversation'
+        }
+    })
+
     conversationWrapper.addEventListener('click', () => {
         document.querySelector('.current').classList.remove('current')
         conversationWrapper.classList.add('current')

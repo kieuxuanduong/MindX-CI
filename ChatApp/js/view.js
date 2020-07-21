@@ -229,6 +229,10 @@ view.backToChatScreen = () => {
         controller.addUser(addUserForm.email.value)
         addUserForm.email.value = ''
     })
+
+    document.querySelector('#sendMessageForm input').addEventListener('click', () =>{
+        view.hideNotify(model.currentConversation.id)
+    })
 }
 
 
